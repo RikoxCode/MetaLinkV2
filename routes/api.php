@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\SheetmusicController;
+use App\Http\Requests\StorePerformanceRequest;
+use App\Models\Performance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +18,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('v1')->group(function () {
+    // Sheetmusic routes
+    Route::prefix('sheetmusics')->group(function () {
+        Route::get('/', [SheetmusicController::class, 'index']);
+        Route::get('/{slug}', [SheetmusicController::class, 'show']);
+        Route::post('/', [SheetmusicController::class, 'store'])->middleware('check-login');
+        Route::put('/{slug}', [SheetmusicController::class, 'update'])->middleware('check-login');
+        Route::delete('/{slug}', [SheetmusicController::class, 'destroy'])->middleware('check-login');
+    });
+
+    // Performances routes
+    Route::prefix('performances')->group(function () {
+        Route::post('/', function (StorePerformanceRequest $request) {
+            $performance = new Performance();
+            $performance->fill($request->validated());
+            $performance->save();
+            return $performance;
+        })->middleware('check-login');
+    });
+
+    // Group routes
+    Route::prefix('groups')->group(function () {
+        Route::get('/', [GroupController::class, 'index']);
+        Route::get('/{slug}', [GroupController::class, 'show']);
+        Route::post('/', [GroupController::class, 'store'])->middleware('check-login');
+        Route::put('/{slug}', [GroupController::class, 'update'])->middleware('check-login');
+        Route::delete('/{slug}', [GroupController::class, 'destroy'])->middleware('check-login');
+    });
 });
+
