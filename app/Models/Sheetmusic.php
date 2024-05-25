@@ -5,15 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class Sheetmusic extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'title',
         'slug',
         'description',
-        'members_count',
+        'composer',
+        'arranger',
+        'publisher',
+        'style',
+        'grad',
+        'flex',
+        'duration',
+        'is_digital',
+        'demo_url',
+        'price',
     ];
 
     public function performances()
