@@ -10,6 +10,7 @@ class Sheetmusic extends Model
     use HasFactory;
 
     protected $fillable = [
+        'archive_id',
         'title',
         'slug',
         'description',

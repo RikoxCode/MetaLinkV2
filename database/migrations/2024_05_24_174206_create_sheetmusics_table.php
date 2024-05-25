@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sheetmusics', function (Blueprint $table) {
             $table->id();
+            $table->integer('archive_id');
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('description')->nullable();

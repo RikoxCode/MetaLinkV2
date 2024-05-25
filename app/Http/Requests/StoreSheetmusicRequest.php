@@ -22,6 +22,7 @@ class StoreSheetmusicRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'archive_id' => ['required', 'integer'],
             'title' => ['required', 'string', 'max:255'],
             'description' => ['string'],
             'composer' => ['required', 'string'],

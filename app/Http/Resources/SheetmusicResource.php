@@ -17,6 +17,7 @@ class SheetmusicResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'archive_id' => $this->archive_id,
             'title' => $this->title,
             'slug' => $this->slug,
             'description' => $this->description,
