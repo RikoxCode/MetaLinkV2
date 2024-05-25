@@ -28,7 +28,7 @@ class StoreSheetmusicRequest extends FormRequest
             'composer' => ['required', 'string'],
             'arranger' => ['required', 'string'],
             'publisher' => ['required', 'string'],
-            'style' => ['required', 'string', 'max:255', 'in:Classical,Jazz,Pop,Rock,Marching,Movie Theme,TV Theme,Video Game,Anime,Hip Hop,Rap,Reggae,Blues,World,Traditional,Religious,Other'],
+            'style' => ['required', 'string', 'max:255'],
             'grad' => ['integer'],
             'flex' => ['integer'],
             'duration' => ['date_format:H:i:s'],
