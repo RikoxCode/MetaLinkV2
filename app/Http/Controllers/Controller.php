@@ -15,9 +15,12 @@ class Controller extends BaseController
     public function generateSlug(string $name, Model $model): string
     {
         $slug = Str::slug($name);
-        do{
-            $slug += '-' . $model::where('slug', $slug)->count();
-        }while($model::where('slug', $slug)->count() > 0);
+        $originalSlug = $slug;
+        $counter = 1;
+
+        while ($model::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $counter++;
+        }
 
         return $slug;
     }
