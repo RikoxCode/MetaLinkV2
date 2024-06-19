@@ -31,7 +31,9 @@ class SheetmusicResource extends JsonResource
             'is_digital' => (bool)$this->is_digital,
             'demo_url' => $this->demo_url,
             'price' => (float)$this->price,
-            'performances' => $this->performances
+            'performances' => $this->performances,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }
