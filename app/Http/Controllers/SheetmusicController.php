@@ -32,7 +32,6 @@ class SheetmusicController extends Controller
     {
         $sheetmusic = Sheetmusic::where('slug', $slug)->first();
         $sheetmusic->fill($request->validated());
-        $sheetmusic->slug = $this->generateSlug($request->title, new Sheetmusic());
         $sheetmusic->save();
         return SheetmusicResource::make($sheetmusic);
     }
