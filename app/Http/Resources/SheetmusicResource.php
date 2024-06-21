@@ -25,13 +25,15 @@ class SheetmusicResource extends JsonResource
             'arranger' => $this->arranger,
             'publisher' => $this->publisher,
             'style' => $this->style,
-            'grad' => (integer)$this->grad,
-            'flex' => (integer)$this->flex,
+            'grad' => (float)$this->grad,
+            'flex' => (float)$this->flex,
             'duration' => $this->duration,
             'is_digital' => (bool)$this->is_digital,
             'demo_url' => $this->demo_url,
             'price' => (float)$this->price,
-            'performances' => $this->performances
+            'performances' => $this->performances,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

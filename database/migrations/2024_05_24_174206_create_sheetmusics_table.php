@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('arranger');
             $table->string('publisher');
             $table->string('style');
-            $table->integer('grad')->default(0);
-            $table->integer('flex')->default(0);
+            $table->decimal('grad', 8, 1)->default(0.0);
+            $table->decimal('flex', 8, 1)->default(0.0);
             $table->time('duration')->default('00:00:00');
             $table->boolean('is_digital')->default(false);
             $table->string('demo_url')->nullable();
