@@ -28,8 +28,10 @@ class AdminAuth
 
             $response = $next($request);
 
-            $log = new ApiLogController();
-            $log->store($request, $response, $resBody);
+            if(str_contains($request->path(), 'logs')){
+                $apiLogController = new ApiLogController();
+                $apiLogController->store($request, $response, $resBody);
+            }
 
             return $response;
         }
