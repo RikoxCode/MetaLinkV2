@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiLogController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\SheetmusicController;
 use App\Http\Requests\StorePerformanceRequest;
@@ -28,7 +29,7 @@ Route::prefix('v1')->group(function () {
         Route::delete('/{slug}', [SheetmusicController::class, 'destroy'])->middleware('check-login');
     });
 
-    // Performances routes
+    // Performance routes
     Route::prefix('performances')->group(function () {
         Route::post('/', function (StorePerformanceRequest $request) {
             $performance = new Performance();
@@ -45,6 +46,12 @@ Route::prefix('v1')->group(function () {
         Route::post('/', [GroupController::class, 'store'])->middleware('check-login');
         Route::put('/{slug}', [GroupController::class, 'update'])->middleware('check-login');
         Route::delete('/{slug}', [GroupController::class, 'destroy'])->middleware('check-login');
+    });
+
+    // Log routes
+    Route::prefix('logs')->group(function () {
+        Route::get('/', [ApiLogController::class, 'index'])->middleware('check-login');
+        Route::get('/{log}', [ApiLogController::class, 'show'])->middleware('check-login');
     });
 });
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\ApiLogController;
 use Closure;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -24,7 +25,13 @@ class AdminAuth
         $resBody = $res->json();
 
         if($res->status() === 200 && ($resBody['data']['permissions_level'] >= 80 || $resBody['data']['is_sys_admin'] === 1)){
-            return $next($request);
+
+            $response = $next($request);
+
+            $log = new ApiLogController();
+            $log->store($request, $response, $resBody);
+
+            return $response;
         }
         return response()->json(['message' => 'Your permission level is not high enough!'], 401);
     }
